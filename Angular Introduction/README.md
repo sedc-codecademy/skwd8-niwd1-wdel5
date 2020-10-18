@@ -76,4 +76,4 @@ A component instance has a lifecycle that starts when Angular instantiates the c
 
 ## Source
 
-To dive deep in to this topic, please continue exploring the official [Angular Documentation](https://drive.google.com/file/d/1GjxpXz2uikzPr192BU9JEl0BrqpN6nCn/view?fbclid=IwAR2juYCaGw9mKzfjdUA5D-DjObTbdHmbYIKwQ6Qb_kuOEksGWxbdK6pXUqk).
+To dive deep in to this topic, please continue exploring the official [Angular Documentation](https://angular.io/).
