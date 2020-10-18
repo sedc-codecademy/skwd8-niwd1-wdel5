@@ -3,14 +3,14 @@
 
 ## What is Angular🔹
 
-Angular is a platform and ***framework for building single-page client applications using HTML and TypeScript***. Angular is written in TypeScript. It implements core and optional functionality as a set of TypeScript libraries that you import into your apps.
+Angular is a platform and **framework for building single-page client applications using HTML and TypeScript**. Angular is written in TypeScript. It implements core and optional functionality as a set of TypeScript libraries that you import into your apps.
 
 ## Angular Architecture🔹
 
 ### Modules
 Basic building blocks are NgModules, which provide a compilation context for components. Angular app is defined by a set of NgModules. An app always has at least a root module that enables bootstrapping, and typically has many more feature modules.
 
-* ***Feature Module:*** A feature module is an organizational best practice, as opposed to a concept of the core Angular API. A feature module delivers a cohesive set of functionality focused on a specific application need such as a user workflow, routing, or forms. While you can do everything within the root module, feature modules help you partition the app into focused areas. A feature module collaborates with the root module and with other modules through the services it provides and the components, directives, and pipes that it shares.
+* **Feature Module:** A feature module is an organizational best practice, as opposed to a concept of the core Angular API. A feature module delivers a cohesive set of functionality focused on a specific application need such as a user workflow, routing, or forms. While you can do everything within the root module, feature modules help you partition the app into focused areas. A feature module collaborates with the root module and with other modules through the services it provides and the components, directives, and pipes that it shares.
 
 ### Components
 Every Angular application has at least one component, the root component(App-component) that connects a component hierarchy with the page document object model (DOM). Each component defines a class that contains application data and logic, and is associated with an HTML template that defines a view to be displayed in a target environment.
@@ -26,14 +26,14 @@ The metadata for a service class provides the information Angular needs to make 
  For data or logic that isn't associated with a specific view, and that you want to share across components, you create a service class. A service class definition is immediately preceded by the ***@Injectable()*** decorator. The decorator provides the metadata that allows other providers to be injected as dependencies into your class. Dependency injection (DI) lets you keep your component classes lean and efficient. They don't fetch data from the server, validate user input, or log directly to the console, they delegate such tasks to services.
 
 ### Directives
-Angular templates are dynamic. When Angular renders them, it transforms the DOM according to the instructions given by directives. A directive is a class with a ***@Directive()*** decorator. Angular has few pre-defined  directives as **NgFor, NgIf, ngSwitch, ngStyle and  ngClassThere** and also give possibility to define  some custom directives using the ***@Directive()*** decorator. ***There are two types of directives:***
+Angular templates are dynamic. When Angular renders them, it transforms the DOM according to the instructions given by directives. A directive is a class with a ***@Directive()*** decorator. Angular has few pre-defined  directives as **NgFor, NgIf, ngSwitch, ngStyle and  ngClassThere** and also give possibility to define  some custom directives using the ***@Directive()*** decorator. **There are two types of directives:**
 
-* ***Structural directives:*** Structural directives alter layout by adding, removing, and replacing elements in the DOM. The example template uses two built-in structural directives to add application logic to how the view is rendered.         
+* **Structural directives:** Structural directives alter layout by adding, removing, and replacing elements in the DOM. The example template uses two built-in structural directives to add application logic to how the view is rendered.         
 ```html
 <li *ngFor="let item of items"></li>
 <div *ngIF="isTrue">some content</div>
 ```
-* ***Attribute directives:*** Attribute directives alter the appearance or behavior of an existing element. In templates they look like regular HTML attributes, hence the name.         
+* **Attribute directives:** Attribute directives alter the appearance or behavior of an existing element. In templates they look like regular HTML attributes, hence the name.         
 ```html
 <input [(ngModel)]="hero.name">
 ```
