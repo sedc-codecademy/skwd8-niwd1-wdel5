@@ -1,9 +1,9 @@
 # Advanced SPA Apps Development 📕
-**On this subject you already know C#, HTML, JS, and CSS, and you are ready for building an end-to-end application. The focus on this subject would be to use all the knowledge and extend them with new popular technologies and build powerful Single Page Applications with user authorization and authentication.  With that in mind we will learn:**
-* How to create Angular applications
+**On this subject you already know C#, HTML, JS, and CSS, and you are ready for building an end-to-end application. The focus on this subject would be to use all the knowledge and extend them with new popular technologies and build powerful Single Page Applications with user authorization and authentication. With that in mind we will learn:**
+* How to create Angular applications with Angular CLI
 * How to build front-end with Angular
-* How to create and implement ASP.NET Web Api 2 projects
-* How to integrate client application with the back-end
+* How to create and implement ASP.NET Web Api 2 project
+* How to integrate the client application with the back-end
 * How to connect to a Data Base
 * What an architecture and design patterns are
 
