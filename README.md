@@ -29,8 +29,8 @@ This repository will contain every piece of material about the subject. It will 
 * [Postgre SQL](https://www.postgresql.org/)
 
 ## Contact
-Trainer: Viktor Jakovlev 
-Mail: viktor.jakovlev@hotmail.com
+* Trainer: Viktor Jakovlev 
+* Mail: viktor.jakovlev@hotmail.com
 
-Assistant: Gordon Jovanovski
-Mail: gordonjovanvoski@gmail.com
+* Assistant: Gordon Jovanovski
+* Mail: gordonjovanvoski@gmail.com
