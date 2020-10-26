@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace SEDC.FoodApp.Web
 {
+    //Microsoft.AspNetCore.Cors
     public class Startup
     {
         public IConfiguration Configuration { get; }
@@ -23,6 +24,9 @@ namespace SEDC.FoodApp.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            //cors
+            services.AddCors();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -33,6 +37,12 @@ namespace SEDC.FoodApp.Web
             }
 
             app.UseRouting();
+
+            //cors
+            app.UseCors(builder => 
+                builder.WithOrigins("http://localhost:4200", "http://localhost:45551")
+                .AllowAnyHeader()
+                .AllowAnyMethod());
 
             app.UseAuthorization();
 
