@@ -9,4 +9,10 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SEDC.FoodApp.DataAccess\SEDC.FoodApp.DataAccess.csproj" />
+    <ProjectReference Include="..\SEDC.FoodApp.DomainModels\SEDC.FoodApp.DomainModels.csproj" />
+    <ProjectReference Include="..\SEDC.FoodApp.RequestModels\SEDC.FoodApp.RequestModels.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -5,8 +5,8 @@ import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
     { path:'', redirectTo:'/home', pathMatch:'full' },
-    { path:'home', pathMatch:'full', component: HomeComponent},
-    { path:'admin-panel', pathMatch: 'full', component: AdminPanelComponent}
+    { path:'home', component: HomeComponent },
+    { path:'admin-panel', component: AdminPanelComponent }
 ]
 
 @NgModule({
