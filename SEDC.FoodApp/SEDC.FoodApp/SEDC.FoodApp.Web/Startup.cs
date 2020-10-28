@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SEDC.FoodApp.Services.Services.Classes;
+using SEDC.FoodApp.Services.Services.Interfaces;
 
 namespace SEDC.FoodApp.Web
 {
@@ -24,6 +26,9 @@ namespace SEDC.FoodApp.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            //register services
+            services.AddTransient<IRestaurantService, RestaurantService>();
 
             //cors
             services.AddCors();

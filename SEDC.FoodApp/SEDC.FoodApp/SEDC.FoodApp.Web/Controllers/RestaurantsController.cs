@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SEDC.FoodApp.Services.Services.Classes;
+using SEDC.FoodApp.Services.Services.Interfaces;
 
 namespace SEDC.FoodApp.Web.Controllers
 {
@@ -11,13 +13,17 @@ namespace SEDC.FoodApp.Web.Controllers
     [ApiController]
     public class RestaurantsController : ControllerBase
     {
-
+        private readonly IRestaurantService _restaurantService;
+        public RestaurantsController(IRestaurantService restaurantService)
+        {
+            _restaurantService = restaurantService;
+        }
 
         [HttpGet("GetRestaurants")]
         public async Task<IActionResult> GetRestaurantsAsync() 
         {
-            //var restaurants = new List<Restaurant>()
-
+            var result = await _restaurantService.GetRestaurantsAsync();
+            
             return Ok();
         }
     }

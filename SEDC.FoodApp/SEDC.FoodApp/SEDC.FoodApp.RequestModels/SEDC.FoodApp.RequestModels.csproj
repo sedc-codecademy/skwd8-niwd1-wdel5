@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SEDC.FoodApp.DomainModels\SEDC.FoodApp.DomainModels.csproj" />
   </ItemGroup>
 
