@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AdminPanelService } from './services/admin-panel.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AppRoutingModule
   ],
   providers: [
-    AliveService
+    AliveService,
+    AdminPanelService
   ],
   bootstrap: [AppComponent]
 })

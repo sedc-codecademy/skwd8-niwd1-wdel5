@@ -2,11 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.IdGenerators;
 
 namespace SEDC.FoodApp.DomainModels.Models
 {
     public class Restaurant
     {
+        [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
         public string Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }

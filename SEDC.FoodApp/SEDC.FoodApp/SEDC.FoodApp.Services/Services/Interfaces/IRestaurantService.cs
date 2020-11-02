@@ -8,6 +8,7 @@ namespace SEDC.FoodApp.Services.Services.Interfaces
 {
     public interface IRestaurantService
     {
+        Task CreateNewRestaurantAsync(RestaurantRequestModel model);
         Task<List<RestaurantRequestModel>> GetRestaurantsAsync();
     }
 }
