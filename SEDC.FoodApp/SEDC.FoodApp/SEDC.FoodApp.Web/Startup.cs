@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SEDC.FoodApp.Services.Helpers;
 using SEDC.FoodApp.Services.Services.Classes;
 using SEDC.FoodApp.Services.Services.Interfaces;
 
@@ -27,8 +28,17 @@ namespace SEDC.FoodApp.Web
         {
             services.AddControllers();
 
+            var connectionStrings = Configuration.GetSection("ConnectionStrings");
+
+            //mongodb
+            var mongoCs = connectionStrings.GetValue<string>("MongoConncetionString");
+            var mongoDbName = connectionStrings.GetValue<string>("MongoDatabase");
+
             //register services
             services.AddTransient<IRestaurantService, RestaurantService>();
+
+            //Dependency Injection Module
+            DIRepositoryModule.RegisterRepositories(services, mongoCs, mongoDbName);
 
             //cors
             services.AddCors();
