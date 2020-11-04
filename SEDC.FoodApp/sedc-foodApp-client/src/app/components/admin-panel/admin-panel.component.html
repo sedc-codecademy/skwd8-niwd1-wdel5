@@ -16,6 +16,7 @@
         <div class="form-group">
             <label for="name">Restaurant Name</label>
             <input type="text" class="form-control" formControlName="name" id="name">
+            <label class="text-danger" *ngIf="requestForm.get('name').touched && requestForm.get('name').errors?.required">This field is required!</label>
         </div>
 
         <div class="form-group">
@@ -35,7 +36,6 @@
         </div>
   
       </form>
-
 
     </div>
   </ng-template>
