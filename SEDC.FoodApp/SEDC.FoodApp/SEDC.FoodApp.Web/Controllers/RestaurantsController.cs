@@ -30,9 +30,8 @@ namespace SEDC.FoodApp.Web.Controllers
         [HttpGet("GetRestaurants")]
         public async Task<IActionResult> GetRestaurantsAsync() 
         {
-            var result = await _restaurantService.GetRestaurantsAsync();
-            
-            return Ok();
+            var response = await _restaurantService.GetRestaurantsAsync();
+            return Ok(response);
         }
     }
 }

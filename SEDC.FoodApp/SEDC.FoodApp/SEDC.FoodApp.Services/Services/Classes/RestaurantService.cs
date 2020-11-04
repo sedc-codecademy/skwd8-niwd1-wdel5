@@ -33,7 +33,25 @@ namespace SEDC.FoodApp.Services.Services.Classes
 
         public async Task<List<RestaurantRequestModel>> GetRestaurantsAsync()
         {
-            return new List<RestaurantRequestModel>();
+            var restaurantList = await _restaurantRepository.GetRestaurantsAsync();
+
+            var mapToRestaurantRequestModel = new List<RestaurantRequestModel>();
+
+            foreach (var restaurant in restaurantList)
+            {
+                var tempModel = new RestaurantRequestModel()
+                {
+                    Id = restaurant.Id,
+                    Name = restaurant.Name,
+                    Address = restaurant.Address,
+                    Municipality = restaurant.Municipality,
+                    Menu = restaurant.Menu
+                };
+
+                mapToRestaurantRequestModel.Add(tempModel);
+            }
+
+            return mapToRestaurantRequestModel;
         }
     }
 }

@@ -13,6 +13,8 @@ export class AdminPanelComponent implements OnInit {
 
   modalRef: BsModalRef;
 
+  restaurants: any;
+
   municipalityList = [Municipality.karpos, Municipality.centar, Municipality.aerodrom]
 
   requestForm = new FormGroup({
@@ -24,7 +26,9 @@ export class AdminPanelComponent implements OnInit {
   constructor(private adminPanelService: AdminPanelService,
               private modalService: BsModalService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllRestaurants()
+  }
 
   addRestaurant() {
     let requestModel = new RestaurantRequestModel();
@@ -33,7 +37,19 @@ export class AdminPanelComponent implements OnInit {
     requestModel.municipality = parseInt(this.requestForm.value.municipality)
 
     this.adminPanelService.addRestaurant(requestModel).subscribe({
-      error: err => console.warn(err.error)
+      error: err => console.warn(err.error),
+      complete: () => {
+        this.closeModal()
+        this.getAllRestaurants()
+      }
+    })
+  }
+
+  getAllRestaurants() {
+    this.adminPanelService.getAllRestaurants().subscribe({
+      next: res => {
+        this.restaurants = res
+      }
     })
   }
 
@@ -44,7 +60,6 @@ export class AdminPanelComponent implements OnInit {
   closeModal() {
     this.modalService._hideModal()
     this.modalService._hideBackdrop()
-
+    this.requestForm.reset()
   }
-
 }

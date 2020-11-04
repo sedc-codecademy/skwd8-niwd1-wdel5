@@ -17,4 +17,12 @@ export class AdminPanelService {
     let url = `${this.serverUrl}/api/Restaurants/AddRestaurant`;
     return this.http.post<any>(url, request)
   }
+
+  getAllRestaurants() {
+    let url = `${this.serverUrl}/api/Restaurants/GetRestaurants`;
+    return this.http.get(url);
+  }
+
+
+
 }
