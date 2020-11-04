@@ -1,1 +1,41 @@
-<p>admin-panel works!</p>
+<button type="button" class="btn btn-primary" (click)="openModal(template)">Test</button>
+
+<!-- modal -->
+<ng-template #template>
+    <div class="modal-header">
+      <!-- <h4 class="modal-title pull-left">{{isEditMode ? 'Edit Restaurant' : 'Add Restaurant'}}</h4> -->
+      <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      
+    </div>
+    <div class="modal-body">
+      
+      <form [formGroup]="requestForm">
+    
+        <div class="form-group">
+            <label for="name">Restaurant Name</label>
+            <input type="text" class="form-control" formControlName="name" id="name">
+        </div>
+
+        <div class="form-group">
+            <label for="address">Addresss</label>
+            <input type="text" class="form-control" formControlName="address" id="address">
+        </div>
+
+        <div class="form-group">
+            <label for="municipality">Municipality</label>
+            <select class="form-control" formControlName="municipality" id="municipality">
+                <option *ngFor="let municipality of municipalityList" value="{{municipality}}">{{municipality | mapMunicipality}}</option>
+            </select>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-outline-success mt-2 mb-2" (click)="addRestaurant()">Add Restaurant</button>
+        </div>
+  
+      </form>
+
+
+    </div>
+  </ng-template>

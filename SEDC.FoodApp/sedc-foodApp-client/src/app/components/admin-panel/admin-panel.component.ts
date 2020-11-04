@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Municipality, RestaurantRequestModel } from 'src/app/models/restaurant-model';
 import { AdminPanelService } from 'src/app/services/admin-panel.service';
 
 @Component({
@@ -8,22 +11,31 @@ import { AdminPanelService } from 'src/app/services/admin-panel.service';
 })
 export class AdminPanelComponent implements OnInit {
 
-  constructor(private adminPanelService: AdminPanelService) {}
+  modalRef: BsModalRef;
 
-  ngOnInit(): void {
-    this.addRestaurant()
-  }
+  municipalityList = [Municipality.karpos, Municipality.centar, Municipality.aerodrom]
+
+  requestForm = new FormGroup({
+    name: new FormControl(''),
+    address: new FormControl(''),
+    municipality: new FormControl('')
+  })
+
+  constructor(private adminPanelService: AdminPanelService,
+              private modalService: BsModalService) {}
+
+  ngOnInit(): void {}
 
   addRestaurant() {
-    let requestModel = {
-      Name: "Forza",
-      Address: "New Address",
-      Municipality: 1
-    }
+    let requestModel = new RestaurantRequestModel();
 
     this.adminPanelService.addRestaurant(requestModel).subscribe({
       error: err => console.warn(err.error)
     })
-
   }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
 }

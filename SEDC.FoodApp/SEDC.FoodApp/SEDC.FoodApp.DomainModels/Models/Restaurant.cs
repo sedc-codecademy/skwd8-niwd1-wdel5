@@ -1,7 +1,5 @@
 ﻿using SEDC.FoodApp.DomainModels.Enums;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
 

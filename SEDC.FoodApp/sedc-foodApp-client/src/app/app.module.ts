@@ -10,6 +10,9 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AdminPanelService } from './services/admin-panel.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { MapMunicipalityPipe } from './pipes/map-municipality.pipe';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,15 @@ import { AdminPanelService } from './services/admin-panel.service';
     HomeComponent,
     AdminPanelComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MapMunicipalityPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    ModalModule.forRoot()
   ],
   providers: [
     AliveService,
