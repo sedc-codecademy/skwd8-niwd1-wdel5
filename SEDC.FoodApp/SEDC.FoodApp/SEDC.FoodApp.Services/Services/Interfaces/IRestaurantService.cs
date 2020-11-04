@@ -10,5 +10,9 @@ namespace SEDC.FoodApp.Services.Services.Interfaces
     {
         Task CreateNewRestaurantAsync(RestaurantRequestModel model);
         Task<List<RestaurantRequestModel>> GetRestaurantsAsync();
+
+        Task DeleteRestaurantByIdAsync(string id);
+
+        Task UpdateRestaurantAsync(UpdateRestaunratRequestModel requestModel);
     }
 }

@@ -31,6 +31,11 @@ namespace SEDC.FoodApp.Services.Services.Classes
             await _restaurantRepository.InsertRestaurantAsync(dtoRestaurant);
         }
 
+        public async Task<Restaurant> GetRestaurantByIdAsync(string id) 
+        {
+            return await _restaurantRepository.GetRestaurantByIdAsync(id);
+        }
+
         public async Task<List<RestaurantRequestModel>> GetRestaurantsAsync()
         {
             var restaurantList = await _restaurantRepository.GetRestaurantsAsync();
@@ -52,6 +57,21 @@ namespace SEDC.FoodApp.Services.Services.Classes
             }
 
             return mapToRestaurantRequestModel;
+        }
+
+        public async Task DeleteRestaurantByIdAsync(string id) 
+        {
+            await _restaurantRepository.DeleteRestaurantByIdAsync(id);
+        }
+
+        public async Task UpdateRestaurantAsync(UpdateRestaunratRequestModel requestModel) 
+        {
+            var restaurant = await GetRestaurantByIdAsync(requestModel.Id);
+            restaurant.Name = requestModel.Name;
+            restaurant.Address = requestModel.Address;
+            restaurant.Municipality = requestModel.Municipality;
+
+            await _restaurantRepository.UpdateRestaurantAsync(restaurant);
         }
     }
 }

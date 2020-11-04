@@ -33,5 +33,20 @@ namespace SEDC.FoodApp.Web.Controllers
             var response = await _restaurantService.GetRestaurantsAsync();
             return Ok(response);
         }
+
+        [HttpPut("UpdateRestaurant")]
+        public async Task<IActionResult> UpdateRestaurantAsync([FromBody] UpdateRestaunratRequestModel requestModel)
+        {
+            await _restaurantService.UpdateRestaurantAsync(requestModel);
+            return Ok();
+        }
+
+
+        [HttpDelete("DeleteRestaurant")]
+        public async Task<IActionResult> DeleteRestaurantAsync([FromQuery] string id) 
+        {
+            await _restaurantService.DeleteRestaurantByIdAsync(id);
+            return Ok();
+        }
     }
 }

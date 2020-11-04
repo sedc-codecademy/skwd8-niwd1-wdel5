@@ -23,6 +23,11 @@ export class AdminPanelService {
     return this.http.get(url);
   }
 
+  deleteRestaurant(id: string) {
+    let url = `${this.serverUrl}/api/Restaurants/DeleteRestaurant?id=${id}`;
+    return this.http.delete(url)
+  }
+
 
 
 }

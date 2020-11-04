@@ -53,6 +53,20 @@ export class AdminPanelComponent implements OnInit {
     })
   }
 
+  deleteRestaurant(id: string) {
+    this.adminPanelService.deleteRestaurant(id).subscribe({
+      error: err => console.warn(err.error),
+      complete: () => {
+        this.getAllRestaurants()
+      }
+    })
+  }
+
+
+
+
+
+
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
