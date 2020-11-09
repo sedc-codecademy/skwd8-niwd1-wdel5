@@ -13,6 +13,8 @@ import { AdminPanelService } from './services/admin-panel.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { MapMunicipalityPipe } from './pipes/map-municipality.pipe';
+import { RestaurantDetailsComponent } from './components/restaurant-details/restaurant-details.component';
+import { MapMealTypePipe } from './pipes/map-mealType.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { MapMunicipalityPipe } from './pipes/map-municipality.pipe';
     AdminPanelComponent,
     HeaderComponent,
     FooterComponent,
-    MapMunicipalityPipe
+    MapMunicipalityPipe,
+    MapMealTypePipe,
+    RestaurantDetailsComponent
   ],
   imports: [
     BrowserModule,

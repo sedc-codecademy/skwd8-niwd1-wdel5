@@ -93,5 +93,29 @@ namespace SEDC.FoodApp.Services.Services.Classes
 
             await _restaurantRepository.UpdateRestaurantAsync(restaurant);
         }
+
+        public async Task UpdateRestaurantMenyAsync(UpdateRestaunratRequestModel requestModel) 
+        {
+            var restaurant = await GetRestaurantByIdAsync(requestModel.Id);
+
+            var menuItem = requestModel.MenuItem;
+
+            if (menuItem.Id == null) 
+            {
+                var dtoMenuItem = new MenuItem()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = menuItem.Name,
+                    Calories = menuItem.Calories,
+                    IsVege = menuItem.IsVege,
+                    Price = menuItem.Price,
+                    MealType = menuItem.MealType
+                };
+
+                restaurant.Menu.Add(dtoMenuItem);
+            }
+
+            await _restaurantRepository.UpdateRestaurantAsync(restaurant);
+        }
     }
 }

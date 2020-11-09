@@ -12,5 +12,7 @@ namespace SEDC.FoodApp.Services.Services.Interfaces
         Task<List<RestaurantRequestModel>> GetRestaurantsAsync(RestaurantRequestModel requestModel);
         Task DeleteRestaurantByIdAsync(string id);
         Task UpdateRestaurantAsync(UpdateRestaunratRequestModel requestModel);
+
+        Task UpdateRestaurantMenyAsync(UpdateRestaunratRequestModel requestModel);
     }
 }

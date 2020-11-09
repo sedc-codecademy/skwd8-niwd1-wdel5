@@ -34,4 +34,9 @@ export class AdminPanelService {
     return this.http.put(url, restaurant);
   }
 
+  updateRestaurantMenu(restaurant: any) {
+    let url = `${this.serverUrl}/api/Restaurants/UpdateRestaurantMenu`;
+    return this.http.put(url, restaurant);
+  }
+
 }

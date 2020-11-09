@@ -93,7 +93,7 @@
             <td>{{restaurant.municipality | mapMunicipality}}</td>
             <td>
                 <button class="btn btn-outline-warning mr-2" (click)="openModal(template, restaurant)">Edit</button>
-                <button class="btn btn-outline-success mr-2">Menu</button>
+                <button class="btn btn-outline-success mr-2" [routerLink]="['/restaurant-details', restaurant.id]">Menu</button>
                 <button class="btn btn-outline-danger" (click)="deleteRestaurant(restaurant.id)">Delete</button>
             </td>
 

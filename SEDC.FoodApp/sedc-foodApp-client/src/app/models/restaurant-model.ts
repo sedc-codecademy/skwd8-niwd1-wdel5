@@ -9,3 +9,20 @@ export enum Municipality {
     centar,
     aerodrom
 }
+
+export class MenuItemRequestModel {
+    id: string
+    name: string
+    price: number
+    calories: number
+    isVege: boolean
+    mealType: MealType
+}
+
+export enum MealType {
+    Starters = 1,
+    Salads,
+    MainDish,
+    Deserts,
+    Drinks
+}
