@@ -9,10 +9,8 @@ namespace SEDC.FoodApp.Services.Services.Interfaces
     public interface IRestaurantService
     {
         Task CreateNewRestaurantAsync(RestaurantRequestModel model);
-        Task<List<RestaurantRequestModel>> GetRestaurantsAsync();
-
+        Task<List<RestaurantRequestModel>> GetRestaurantsAsync(RestaurantRequestModel requestModel);
         Task DeleteRestaurantByIdAsync(string id);
-
         Task UpdateRestaurantAsync(UpdateRestaunratRequestModel requestModel);
     }
 }

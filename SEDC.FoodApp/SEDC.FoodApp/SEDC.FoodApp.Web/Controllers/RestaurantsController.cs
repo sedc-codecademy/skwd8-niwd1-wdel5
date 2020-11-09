@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SEDC.FoodApp.DomainModels.Enums;
 using SEDC.FoodApp.RequestModels.Models;
 using SEDC.FoodApp.Services.Services.Classes;
 using SEDC.FoodApp.Services.Services.Interfaces;
@@ -28,11 +30,20 @@ namespace SEDC.FoodApp.Web.Controllers
             return Ok();
         }
 
-        //api/Restaurants/GetRestaurants
+        //api/Restaurants/GetRestaurants?queryParameter (ex: name)
         [HttpGet("GetRestaurants")]
-        public async Task<IActionResult> GetRestaurantsAsync() 
+        public async Task<IActionResult> GetRestaurantsAsync([FromQuery] string name,
+                                                             [FromQuery] string address,
+                                                             [FromQuery] Municipality? municipality) 
         {
-            var response = await _restaurantService.GetRestaurantsAsync();
+            var requestModel = new RestaurantRequestModel()
+            {
+                Name = name,
+                Address = address,
+                Municipality = municipality
+            };
+
+            var response = await _restaurantService.GetRestaurantsAsync(requestModel);
             return Ok(response);
         }
 

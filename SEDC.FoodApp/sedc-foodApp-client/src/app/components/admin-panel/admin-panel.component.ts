@@ -19,13 +19,22 @@ export class AdminPanelComponent implements OnInit {
 
   isEditMode: boolean = false;
 
-  municipalityList = [Municipality.karpos, Municipality.centar, Municipality.aerodrom]
-
   requestForm = new FormGroup({
     name: new FormControl('', Validators.required),
     address: new FormControl(''),
     municipality: new FormControl('')
   })
+
+  filterForm = new FormGroup({
+    name: new FormControl(''),
+    address: new FormControl(''),
+  })
+
+  municipalityFlterForm = new FormGroup({
+    municipality: new FormControl('')
+  })
+
+  municipalityList = [Municipality.karpos, Municipality.centar, Municipality.aerodrom]
 
   constructor(private adminPanelService: AdminPanelService,
               private modalService: BsModalService) {}
@@ -50,7 +59,13 @@ export class AdminPanelComponent implements OnInit {
   }
 
   getAllRestaurants() {
-    this.adminPanelService.getAllRestaurants().subscribe({
+    let filter = {
+      name: this.filterForm.value.name,
+      address: this.filterForm.value.address,
+      municipality: this.municipalityFlterForm.value.municipality
+    }
+
+    this.adminPanelService.getAllRestaurants(filter).subscribe({
       next: res => {
         this.restaurants = res
       }

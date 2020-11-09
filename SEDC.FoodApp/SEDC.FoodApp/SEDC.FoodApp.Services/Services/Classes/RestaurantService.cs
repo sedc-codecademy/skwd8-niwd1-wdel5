@@ -1,9 +1,12 @@
 ﻿using SEDC.FoodApp.DataAccess.Mongo.Repositories.Interfaces;
+using SEDC.FoodApp.DomainModels.Enums;
 using SEDC.FoodApp.DomainModels.Models;
 using SEDC.FoodApp.RequestModels.Models;
+using SEDC.FoodApp.Services.Helpers;
 using SEDC.FoodApp.Services.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,7 +27,7 @@ namespace SEDC.FoodApp.Services.Services.Classes
             {
                 Name = model.Name,
                 Address = model.Address,
-                Municipality = model.Municipality,
+                Municipality = (Municipality)model.Municipality,
                 Menu = new List<MenuItem>()
             };
 
@@ -36,9 +39,26 @@ namespace SEDC.FoodApp.Services.Services.Classes
             return await _restaurantRepository.GetRestaurantByIdAsync(id);
         }
 
-        public async Task<List<RestaurantRequestModel>> GetRestaurantsAsync()
+        public async Task<List<RestaurantRequestModel>> GetRestaurantsAsync(RestaurantRequestModel requestModel)
         {
-            var restaurantList = await _restaurantRepository.GetRestaurantsAsync();
+            Expression<Func<Restaurant, bool>> filter = f => true;
+
+            if (!string.IsNullOrEmpty(requestModel.Name)) 
+            {
+                filter = filter.AndAlso(x => x.Name.ToLower().Contains(requestModel.Name.ToLower()));
+            }
+
+            if (!string.IsNullOrEmpty(requestModel.Address))
+            {
+                filter = filter.AndAlso(x => x.Address.ToLower().Contains(requestModel.Address.ToLower()));
+            }
+
+            if (requestModel.Municipality.HasValue)
+            {
+                filter = filter.AndAlso(x => x.Municipality == requestModel.Municipality);
+            }
+
+            var restaurantList = await _restaurantRepository.GetRestaurantsAsync(filter);
 
             var mapToRestaurantRequestModel = new List<RestaurantRequestModel>();
 

@@ -8,17 +8,17 @@
                 <label>Filter by: </label>
             </div>
 
-            <!-- <form [formGroup]="filterForm" (input)="getAllRestoraunts()" class="d-flex mr-2">           
-                <input class="form-control mr-2" type="text"  formControlName="name" placeholder="Name"> 
+            <form [formGroup]="filterForm" (input)="getAllRestaurants()" class="d-flex mr-2"> 
+                <input class="form-control mr-2" type="text" formControlName="name" placeholder="Name"> 
                 <input class="form-control" type="text" formControlName="address" placeholder="Address">  
             </form>
 
-            <form [formGroup]="municipalityFlterForm" (change)=getAllRestoraunts()>
+            <form [formGroup]="municipalityFlterForm" (change)=getAllRestaurants()>
                 <select formControlName="municipality" class="form-control">
                     <option value="">All Municipalities</option>
-                    <option *ngFor="let municipality of municipalityList" value="{{municipality}}">{{mapMunicipality(municipality)}}</option>
+                    <option *ngFor="let municipality of municipalityList" value="{{municipality}}">{{municipality | mapMunicipality}}</option>
                 </select>
-            </form> -->
+            </form>
 
         </div>
         <div> 

@@ -18,8 +18,9 @@ export class AdminPanelService {
     return this.http.post<any>(url, request)
   }
 
-  getAllRestaurants() {
-    let url = `${this.serverUrl}/api/Restaurants/GetRestaurants`;
+  getAllRestaurants(filter: any) {
+    filter.municipality = filter.municipality === "" ? "" : parseInt(filter.municipality)
+    let url = `${this.serverUrl}/api/Restaurants/GetRestaurants?name=${filter.name}&address=${filter.address}&municipality=${filter.municipality}`;
     return this.http.get(url);
   }
 

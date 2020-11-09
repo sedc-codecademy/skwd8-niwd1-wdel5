@@ -1,7 +1,7 @@
 ﻿using SEDC.FoodApp.DomainModels.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace SEDC.FoodApp.DataAccess.Mongo.Repositories.Interfaces
@@ -10,7 +10,7 @@ namespace SEDC.FoodApp.DataAccess.Mongo.Repositories.Interfaces
     {
         Task InsertRestaurantAsync(Restaurant restaurant);
         Task<Restaurant> GetRestaurantByIdAsync(string id);
-        Task<List<Restaurant>> GetRestaurantsAsync();
+        Task<List<Restaurant>> GetRestaurantsAsync(Expression<Func<Restaurant, bool>> filter);
         Task UpdateRestaurantAsync(Restaurant restaurant);
         Task DeleteRestaurantByIdAsync(string id);
     }

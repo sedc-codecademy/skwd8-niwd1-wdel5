@@ -3,6 +3,7 @@ using SEDC.FoodApp.DataAccess.Mongo.Repositories.Interfaces;
 using SEDC.FoodApp.DomainModels.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,9 +29,9 @@ namespace SEDC.FoodApp.DataAccess.Mongo.Repositories.Classes
             return await MongoCollection.Find(Builders<Restaurant>.Filter.Eq("Id", id)).FirstOrDefaultAsync();
         }
 
-        public async Task<List<Restaurant>> GetRestaurantsAsync()
+        public async Task<List<Restaurant>> GetRestaurantsAsync(Expression<Func<Restaurant, bool>> filter)
         {
-            return await Collection.ToListAsync();
+            return await MongoCollection.Find(filter).ToListAsync();
         }
 
         public async Task UpdateRestaurantAsync(Restaurant restaurant)
