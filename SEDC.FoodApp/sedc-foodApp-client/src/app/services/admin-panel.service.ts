@@ -28,6 +28,9 @@ export class AdminPanelService {
     return this.http.delete(url)
   }
 
-
+  updateRestaurant(restaurant: any) {
+    let url = `${this.serverUrl}/api/Restaurants/UpdateRestaurant`;
+    return this.http.put(url, restaurant);
+  }
 
 }

@@ -20,6 +20,7 @@ namespace SEDC.FoodApp.Web.Controllers
             _restaurantService = restaurantService;
         }
 
+        //api/Restaurants/AddRestaurant
         [HttpPost("AddRestaurant")]
         public async Task<IActionResult> AddRestaurantAsync([FromBody] RestaurantRequestModel model) 
         {
@@ -27,6 +28,7 @@ namespace SEDC.FoodApp.Web.Controllers
             return Ok();
         }
 
+        //api/Restaurants/GetRestaurants
         [HttpGet("GetRestaurants")]
         public async Task<IActionResult> GetRestaurantsAsync() 
         {
@@ -34,6 +36,7 @@ namespace SEDC.FoodApp.Web.Controllers
             return Ok(response);
         }
 
+        //api/Restaurants/UpdateRestaurant
         [HttpPut("UpdateRestaurant")]
         public async Task<IActionResult> UpdateRestaurantAsync([FromBody] UpdateRestaunratRequestModel requestModel)
         {
@@ -41,7 +44,7 @@ namespace SEDC.FoodApp.Web.Controllers
             return Ok();
         }
 
-
+        //api/Restaurants/DeleteRestaurant
         [HttpDelete("DeleteRestaurant")]
         public async Task<IActionResult> DeleteRestaurantAsync([FromQuery] string id) 
         {

@@ -15,6 +15,10 @@ export class AdminPanelComponent implements OnInit {
 
   restaurants: any;
 
+  restaurantId: string;
+
+  isEditMode: boolean = false;
+
   municipalityList = [Municipality.karpos, Municipality.centar, Municipality.aerodrom]
 
   requestForm = new FormGroup({
@@ -53,6 +57,19 @@ export class AdminPanelComponent implements OnInit {
     })
   }
 
+  updateRestaurant() {
+    let body = Object.assign(this.requestForm.value, { id : this.restaurantId})
+    body.municipality = parseInt(body.municipality)
+
+    this.adminPanelService.updateRestaurant(body).subscribe({
+      error: err => console.warn(err.error),
+      complete: () => {
+        this.closeModal()
+        this.getAllRestaurants()
+      }
+    })
+  }
+
   deleteRestaurant(id: string) {
     this.adminPanelService.deleteRestaurant(id).subscribe({
       error: err => console.warn(err.error),
@@ -62,18 +79,27 @@ export class AdminPanelComponent implements OnInit {
     })
   }
 
-
-
-
-
-
-  openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<any>, restaurant?: any) {
     this.modalRef = this.modalService.show(template);
+
+    if(!restaurant) {
+      this.requestForm.get("municipality").setValue(Municipality.karpos)
+    }
+
+    if(!!restaurant) {
+      this.isEditMode = true;
+      const {id, menu, ...rest} = restaurant
+
+      this.requestForm.setValue(rest)
+      this.restaurantId = id
+    }
+
   }
 
   closeModal() {
     this.modalService._hideModal()
     this.modalService._hideBackdrop()
+    this.isEditMode = false;
     this.requestForm.reset()
   }
 }
