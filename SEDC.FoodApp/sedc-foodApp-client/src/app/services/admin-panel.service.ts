@@ -18,25 +18,35 @@ export class AdminPanelService {
     return this.http.post<any>(url, request)
   }
 
-  getAllRestaurants(filter: any) {
+  getAllRestaurants(filter: any) : Observable<any> {
     filter.municipality = filter.municipality === "" ? "" : parseInt(filter.municipality)
     let url = `${this.serverUrl}/api/Restaurants/GetRestaurants?name=${filter.name}&address=${filter.address}&municipality=${filter.municipality}`;
     return this.http.get(url);
   }
 
-  deleteRestaurant(id: string) {
+  deleteRestaurant(id: string) : Observable<any> {
     let url = `${this.serverUrl}/api/Restaurants/DeleteRestaurant?id=${id}`;
     return this.http.delete(url)
   }
 
-  updateRestaurant(restaurant: any) {
+  updateRestaurant(restaurant: any) : Observable<any> {
     let url = `${this.serverUrl}/api/Restaurants/UpdateRestaurant`;
     return this.http.put(url, restaurant);
   }
 
-  updateRestaurantMenu(restaurant: any) {
+  updateRestaurantMenu(restaurant: any) : Observable<any> {
     let url = `${this.serverUrl}/api/Restaurants/UpdateRestaurantMenu`;
     return this.http.put(url, restaurant);
+  }
+
+  getRestaurantMenu(restaurantId: string, name: string) : Observable<any> {
+    let url = `${this.serverUrl}/api/Restaurants/GetRestaurantMenuItems?restaurantId=${restaurantId}&name=${name}`;
+    return this.http.get(url);
+  }
+
+  deleteMenuItem(restaurantId: string, menuItemId: string) {
+    let url = `${this.serverUrl}/api/Restaurants/DeleteMenuItem?restaurantId=${restaurantId}&menuItemId=${menuItemId}`;
+    return this.http.delete(url);
   }
 
 }

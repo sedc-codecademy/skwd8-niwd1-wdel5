@@ -1,4 +1,5 @@
-﻿using SEDC.FoodApp.RequestModels.Models;
+﻿using SEDC.FoodApp.DomainModels.Models;
+using SEDC.FoodApp.RequestModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +13,8 @@ namespace SEDC.FoodApp.Services.Services.Interfaces
         Task<List<RestaurantRequestModel>> GetRestaurantsAsync(RestaurantRequestModel requestModel);
         Task DeleteRestaurantByIdAsync(string id);
         Task UpdateRestaurantAsync(UpdateRestaunratRequestModel requestModel);
-
-        Task UpdateRestaurantMenyAsync(UpdateRestaunratRequestModel requestModel);
+        Task UpdateRestaurantMenuAsync(UpdateRestaunratRequestModel requestModel);
+        Task<Restaurant> GetRestaurantByIdAsync(string id);
+        Task DeleteRestaurantMenuItemAsync(Restaurant restaurant, string menuItemId);
     }
 }

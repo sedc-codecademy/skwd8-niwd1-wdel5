@@ -7,7 +7,7 @@
             <label>Filter by: </label>
         </div>
         <div class="mr-auto">
-            <form [formGroup]="filterForm">
+            <form [formGroup]="filterForm" (input)="getMenuItems()">
                 <input type="text" class="form-control" formControlName="name" placeholder="Name">
             </form>
         </div>
@@ -65,3 +65,36 @@
   
     </div>
   </ng-template>
+
+<!-- table -->
+<div class="card p-2 mb-2">
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Calories</th>
+          <th scope="col">Is Vegeterian</th>
+          <th scope="col">Price</th>
+          <th scope="col">Meal Type</th>
+          <th scope="col">Options</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="restaurantMenuItems">
+        <tr *ngFor="let item of restaurantMenuItems; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.calories }}</td>
+          <td>{{ item.isVege | isVegePipe }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.mealType | mapMealType}}</td>
+          <td>
+            <button class="btn btn-outline-warning mr-2">Edit</button>
+            <button class="btn btn-outline-danger" (click)="deleteMenuItem(item.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+</div>

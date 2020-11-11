@@ -14,6 +14,8 @@ export class RestaurantDetailsComponent implements OnInit {
 
   modalRef: BsModalRef
 
+  restaurantMenuItems: any
+
   restaurantId: string
 
   isEditMode: boolean = false
@@ -40,6 +42,8 @@ export class RestaurantDetailsComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: any) => {
       this.restaurantId = params.id
     })
+
+    this.getMenuItems()
   }
 
   addMenuItem() {
@@ -58,9 +62,25 @@ export class RestaurantDetailsComponent implements OnInit {
       error: err => console.warn(err.error),
       complete: () => {
         this.closeModal()
+        this.getMenuItems()
       }
     })  
+  }
 
+  getMenuItems() {
+    let filter = this.filterForm.value.name;
+
+    this.adminPanelService.getRestaurantMenu(this.restaurantId, filter).subscribe({
+      next: data => this.restaurantMenuItems = data,
+      error: err => console.warn(err.error)
+    })
+  }
+
+  deleteMenuItem(menuItemId: string) {
+    this.adminPanelService.deleteMenuItem(this.restaurantId, menuItemId).subscribe({
+      error: err => console.warn(err.error),
+      complete: () => this.getMenuItems()
+    })
   }
 
   openModal(template: TemplateRef<any>, menuItem?: any) {

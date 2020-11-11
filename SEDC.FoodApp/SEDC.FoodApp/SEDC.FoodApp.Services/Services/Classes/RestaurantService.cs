@@ -6,6 +6,7 @@ using SEDC.FoodApp.Services.Helpers;
 using SEDC.FoodApp.Services.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
@@ -94,10 +95,9 @@ namespace SEDC.FoodApp.Services.Services.Classes
             await _restaurantRepository.UpdateRestaurantAsync(restaurant);
         }
 
-        public async Task UpdateRestaurantMenyAsync(UpdateRestaunratRequestModel requestModel) 
+        public async Task UpdateRestaurantMenuAsync(UpdateRestaunratRequestModel requestModel) 
         {
             var restaurant = await GetRestaurantByIdAsync(requestModel.Id);
-
             var menuItem = requestModel.MenuItem;
 
             if (menuItem.Id == null) 
@@ -115,6 +115,13 @@ namespace SEDC.FoodApp.Services.Services.Classes
                 restaurant.Menu.Add(dtoMenuItem);
             }
 
+            await _restaurantRepository.UpdateRestaurantAsync(restaurant);
+        }
+
+        public async Task DeleteRestaurantMenuItemAsync(Restaurant restaurant, string menuItemId) 
+        {
+            var menuItem = restaurant.Menu.FirstOrDefault(x => x.Id == menuItemId);
+            restaurant.Menu.Remove(menuItem);
             await _restaurantRepository.UpdateRestaurantAsync(restaurant);
         }
     }

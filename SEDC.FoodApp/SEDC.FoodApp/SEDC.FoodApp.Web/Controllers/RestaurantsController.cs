@@ -30,7 +30,7 @@ namespace SEDC.FoodApp.Web.Controllers
             return Ok();
         }
 
-        //api/Restaurants/GetRestaurants?queryParameter (ex: name)
+        //api/Restaurants/GetRestaurants queries are optional ex: ?id=12345
         [HttpGet("GetRestaurants")]
         public async Task<IActionResult> GetRestaurantsAsync([FromQuery] string name,
                                                              [FromQuery] string address,
@@ -67,7 +67,33 @@ namespace SEDC.FoodApp.Web.Controllers
         [HttpPut("UpdateRestaurantMenu")]
         public async Task<IActionResult> UpdateRestaurantMenuAsync([FromBody] UpdateRestaunratRequestModel requestModel) 
         {
-            await _restaurantService.UpdateRestaurantMenyAsync(requestModel);
+            await _restaurantService.UpdateRestaurantMenuAsync(requestModel);
+            return Ok();
+        }
+
+        //api/Restaurants/GetRestaurantMenuItems queries are optional ex: ?name=testrestaurant
+        [HttpGet("GetRestaurantMenuItems")]
+        public async Task<IActionResult> GetRestaurantMenuItemsAsync([FromQuery] string restaurantId,
+                                                                     [FromQuery] string name)
+        {
+            var restaurant = await _restaurantService.GetRestaurantByIdAsync(restaurantId);
+            var menuItems = restaurant.Menu;
+
+            if (!string.IsNullOrEmpty(name)) 
+            {
+                menuItems = restaurant.Menu.FindAll(x => x.Name.ToLower().Contains(name.ToLower()));
+            }
+
+            return Ok(menuItems);
+        }
+
+        //api/Restaurants/DeleteMenuItem
+        [HttpDelete("DeleteMenuItem")]
+        public async Task<IActionResult> DeleteMenuItemAsync([FromQuery] string restaurantId,
+                                                             [FromQuery] string menuItemId ) 
+        {
+            var restaurant = await _restaurantService.GetRestaurantByIdAsync(restaurantId);
+            await _restaurantService.DeleteRestaurantMenuItemAsync(restaurant, menuItemId);
             return Ok();
         }
 

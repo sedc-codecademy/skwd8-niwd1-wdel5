@@ -15,6 +15,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { MapMunicipalityPipe } from './pipes/map-municipality.pipe';
 import { RestaurantDetailsComponent } from './components/restaurant-details/restaurant-details.component';
 import { MapMealTypePipe } from './pipes/map-mealType.pipe';
+import { IsVegePipe } from './pipes/is-vege.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MapMealTypePipe } from './pipes/map-mealType.pipe';
     FooterComponent,
     MapMunicipalityPipe,
     MapMealTypePipe,
+    IsVegePipe,
     RestaurantDetailsComponent
   ],
   imports: [

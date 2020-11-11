@@ -85,7 +85,6 @@
 
       <tbody>        
         <tr *ngFor="let restaurant of restaurants; index as i">
-
             <th scope="row">{{i + 1}}</th>
             <td>{{restaurant.id}}</td>
             <td>{{restaurant.name}}</td>
@@ -96,7 +95,6 @@
                 <button class="btn btn-outline-success mr-2" [routerLink]="['/restaurant-details', restaurant.id]">Menu</button>
                 <button class="btn btn-outline-danger" (click)="deleteRestaurant(restaurant.id)">Delete</button>
             </td>
-
         </tr>     
       </tbody>
 
