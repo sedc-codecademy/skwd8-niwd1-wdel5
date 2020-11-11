@@ -16,6 +16,11 @@ import { MapMunicipalityPipe } from './pipes/map-municipality.pipe';
 import { RestaurantDetailsComponent } from './components/restaurant-details/restaurant-details.component';
 import { MapMealTypePipe } from './pipes/map-mealType.pipe';
 import { IsVegePipe } from './pipes/is-vege.pipe';
+import { RestaurantsComponent } from './components/restaurants/restaurants.component';
+import { RestaurantService } from './services/restaurant.service';
+import { RestaurantComponent } from './components/restaurant/restaurant.component';
+import { RestaurantMenuComponent } from './components/restaurant-menu/restaurant-menu.component';
+import { RestaurantMenuItemComponent } from './components/restaurant-menu-item/restaurant-menu-item.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,11 @@ import { IsVegePipe } from './pipes/is-vege.pipe';
     MapMunicipalityPipe,
     MapMealTypePipe,
     IsVegePipe,
-    RestaurantDetailsComponent
+    RestaurantDetailsComponent,
+    RestaurantsComponent,
+    RestaurantComponent,
+    RestaurantMenuComponent,
+    RestaurantMenuItemComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +47,8 @@ import { IsVegePipe } from './pipes/is-vege.pipe';
   ],
   providers: [
     AliveService,
-    AdminPanelService
+    AdminPanelService,
+    RestaurantService
   ],
   bootstrap: [AppComponent]
 })

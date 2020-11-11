@@ -108,7 +108,6 @@ export class AdminPanelComponent implements OnInit {
       this.requestForm.setValue(rest)
       this.restaurantId = id
     }
-
   }
 
   closeModal() {

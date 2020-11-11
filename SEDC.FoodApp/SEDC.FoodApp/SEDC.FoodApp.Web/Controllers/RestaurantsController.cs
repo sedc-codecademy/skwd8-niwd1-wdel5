@@ -63,7 +63,6 @@ namespace SEDC.FoodApp.Web.Controllers
             return Ok();
         }
 
-
         [HttpPut("UpdateRestaurantMenu")]
         public async Task<IActionResult> UpdateRestaurantMenuAsync([FromBody] UpdateRestaunratRequestModel requestModel) 
         {
