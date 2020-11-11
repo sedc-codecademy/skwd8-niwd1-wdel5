@@ -17,6 +17,7 @@ export class RestaurantDetailsComponent implements OnInit {
   restaurantMenuItems: any
 
   restaurantId: string
+  menuItemId: string
 
   isEditMode: boolean = false
 
@@ -46,7 +47,7 @@ export class RestaurantDetailsComponent implements OnInit {
     this.getMenuItems()
   }
 
-  addMenuItem() {
+  addOrEditMenuItem() {
     let requestModel: any = {
       id: this.restaurantId,
       menuItem: {
@@ -56,6 +57,10 @@ export class RestaurantDetailsComponent implements OnInit {
         isVege: Boolean(this.menuItemForm.value.isVege),
         mealType: parseInt(this.menuItemForm.value.mealType)
       }
+    }
+
+    if(this.isEditMode) {
+      requestModel.menuItem.id = this.menuItemId
     }
 
     this.adminPanelService.updateRestaurantMenu(requestModel).subscribe({
@@ -86,10 +91,18 @@ export class RestaurantDetailsComponent implements OnInit {
   openModal(template: TemplateRef<any>, menuItem?: any) {
     this.modalRef = this.modalService.show(template);
 
+    //add
     if(!menuItem) {
       this.menuItemForm.get("mealType").setValue(MealType.Starters)
     }
 
+    //edit
+    if(!!menuItem) {
+      this.isEditMode = true;
+      const {id, ...rest} = menuItem;
+      this.menuItemForm.setValue(rest)
+      this.menuItemId = id;
+    }
   }
 
   closeModal() {

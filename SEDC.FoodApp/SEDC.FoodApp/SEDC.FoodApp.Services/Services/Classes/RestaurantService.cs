@@ -100,7 +100,7 @@ namespace SEDC.FoodApp.Services.Services.Classes
             var restaurant = await GetRestaurantByIdAsync(requestModel.Id);
             var menuItem = requestModel.MenuItem;
 
-            if (menuItem.Id == null) 
+            if (string.IsNullOrEmpty(menuItem.Id))
             {
                 var dtoMenuItem = new MenuItem()
                 {
@@ -113,6 +113,22 @@ namespace SEDC.FoodApp.Services.Services.Classes
                 };
 
                 restaurant.Menu.Add(dtoMenuItem);
+            }
+            else 
+            {
+                for (int i = 0; i < restaurant.Menu.Count; i++)
+                {
+                    if (restaurant.Menu[i].Id == menuItem.Id) 
+                    {
+                        restaurant.Menu[i].Id = menuItem.Id;
+                        restaurant.Menu[i].Name = menuItem.Name;
+                        restaurant.Menu[i].Calories = menuItem.Calories;
+                        restaurant.Menu[i].Price = menuItem.Price;
+                        restaurant.Menu[i].IsVege = menuItem.IsVege;
+                        restaurant.Menu[i].MealType = menuItem.MealType;
+                        break;
+                    }
+                }
             }
 
             await _restaurantRepository.UpdateRestaurantAsync(restaurant);
