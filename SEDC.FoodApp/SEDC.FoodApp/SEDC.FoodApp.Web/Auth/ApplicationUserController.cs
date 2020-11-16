@@ -4,13 +4,17 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using SEDC.FoodApp.Auth.Models;
+using SEDC.FoodApp.Mailer;
+using SEDC.FoodApp.Mailer.Models;
 
 namespace SEDC.FoodApp.Web.Auth
 {
@@ -30,11 +34,11 @@ namespace SEDC.FoodApp.Web.Auth
 
         //http://localhost:45551/api/applicationuser/register
         [HttpPost("Register")]
-        public async Task<IActionResult> RegisterUser([FromBody] RegisterRequestModel model) 
+        public async Task<IActionResult> RegisterUser([FromBody] RegisterRequestModel model)
         {
             var usernameExist = await _userManager.FindByNameAsync(model.Username);
 
-            if (usernameExist != null) 
+            if (usernameExist != null)
             {
                 return BadRequest("This username is already used!");
             }
@@ -54,7 +58,7 @@ namespace SEDC.FoodApp.Web.Auth
                 Email = model.Email,
                 FullName = model.FullName
             };
-           
+
             try
             {
                 var result = await _userManager.CreateAsync(applicationUser, model.Password);
@@ -69,7 +73,7 @@ namespace SEDC.FoodApp.Web.Auth
 
         //http://localhost:45551/api/applicationuser/login
         [HttpGet("Login")]
-        public async Task<IActionResult> LoginUser([FromBody] LoginRequestModel model) 
+        public async Task<IActionResult> LoginUser([FromBody] LoginRequestModel model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
@@ -106,12 +110,94 @@ namespace SEDC.FoodApp.Web.Auth
                     throw ex;
                 }
             }
-            else 
+            else
             {
                 return BadRequest("Username or password are invalid!");
             }
         }
 
+        //http://localhost:45551/api/applicationuser/ChangePassword
+        [HttpPost("ChangePassword")]
+        public async Task<IActionResult> ChangeUserPassword([FromBody] ChangePasswordRequestModel model)
+        {
+            try
+            {
+                var user = await _userManager.FindByIdAsync(model.UserId);
+                var response = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+
+                if (response.Succeeded)
+                {
+                    return Ok(new { message = "Password changed successfully" });
+                }
+                else
+                {
+                    return BadRequest("Password does not match!");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        //http://localhost:45551/api/applicationuser/ForgotPassword
+        [HttpPost("ForgotPassword")]
+        public async Task<IActionResult> ForgotUserPassword([FromBody] ForgotPasswordRequestModel model)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+                byte[] tokenBytes = Encoding.UTF8.GetBytes(token);
+                var tokenEncoded = WebEncoders.Base64UrlEncode(tokenBytes);
+
+                var clientAddress = Configuration.GetSection("ApplicationSettings").GetValue<string>("ClientAddress");
+                var passwordResetLink = $"{clientAddress}/user/reset-password?email={user.EmailConfirmed}&token={tokenEncoded}";
+
+                var newEmail = new Email()
+                {
+                    To = user.Email,
+                    Subject = "reset password",
+                    Body = $"Reset password here: {passwordResetLink}"
+                };
+
+                SendMail.Execute(newEmail);
+
+                return Ok(new { message = $"A link to reset your password has been sent to your email address: {maskEmail(user.Email)}" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        //todo: make this post
+        //http://localhost:45551/api/applicationuser/ResetPassword
+        [HttpGet("ResetPassword")]
+        public async Task<IActionResult> ResetUserPassword([FromQuery] string email,
+                                                           [FromQuery] string token,
+                                                           [FromQuery] string newPassword)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            var tokenDecodedBytes = WebEncoders.Base64UrlDecode(token);
+            var tokenDecoded = Encoding.UTF8.GetString(tokenDecodedBytes);
+
+            var response = await _userManager.ResetPasswordAsync(user, tokenDecoded, newPassword);
+
+            if (response.Succeeded)
+            {
+                return Ok(new { message = $"Password successfully changed!" });
+            }
+
+            return BadRequest("Error has occured, password not changed!");
+        }
+
+        private string maskEmail(string email)
+        {
+            string pattern = @"(?<=[\w]{1})[\w-\._\+%]*(?=[\w]{1}@)";
+            return Regex.Replace(email, pattern, m => new string('*', m.Length));
+        }
 
     }
 }

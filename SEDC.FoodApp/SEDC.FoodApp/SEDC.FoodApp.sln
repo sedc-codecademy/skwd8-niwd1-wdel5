@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.FoodApp.DomainModels",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.FoodApp.RequestModels", "SEDC.FoodApp.RequestModels\SEDC.FoodApp.RequestModels.csproj", "{E15E9B02-D1C6-4492-847E-7CE313EE5B7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.FoodApp.Auth.Models", "SEDC.FoodApp.Auth.Models\SEDC.FoodApp.Auth.Models.csproj", "{8896D9BD-170E-4C94-80EC-39EA822479E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.FoodApp.Auth.Models", "SEDC.FoodApp.Auth.Models\SEDC.FoodApp.Auth.Models.csproj", "{8896D9BD-170E-4C94-80EC-39EA822479E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.FoodApp.Mailer", "SEDC.FoodApp.Mailer\SEDC.FoodApp.Mailer.csproj", "{F7DFA674-50B2-4878-911F-E84516AC1FC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{8896D9BD-170E-4C94-80EC-39EA822479E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8896D9BD-170E-4C94-80EC-39EA822479E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8896D9BD-170E-4C94-80EC-39EA822479E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7DFA674-50B2-4878-911F-E84516AC1FC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7DFA674-50B2-4878-911F-E84516AC1FC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7DFA674-50B2-4878-911F-E84516AC1FC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7DFA674-50B2-4878-911F-E84516AC1FC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

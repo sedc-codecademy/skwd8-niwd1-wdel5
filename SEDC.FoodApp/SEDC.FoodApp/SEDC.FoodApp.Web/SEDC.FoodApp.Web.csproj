@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SEDC.FoodApp.Mailer\SEDC.FoodApp.Mailer.csproj" />
     <ProjectReference Include="..\SEDC.FoodApp.RequestModels\SEDC.FoodApp.RequestModels.csproj" />
     <ProjectReference Include="..\SEDC.FoodApp.Services\SEDC.FoodApp.Services.csproj" />
   </ItemGroup>
