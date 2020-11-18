@@ -5,6 +5,9 @@ import { HomeComponent } from './components/home/home.component';
 import { RestaurantDetailsComponent } from './components/restaurant-details/restaurant-details.component';
 import { RestaurantMenuComponent } from './components/restaurant-menu/restaurant-menu.component';
 import { RestaurantsComponent } from './components/restaurants/restaurants.component';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
     { path:'', redirectTo:'/home', pathMatch:'full' },
@@ -12,7 +15,14 @@ const routes: Routes = [
     { path:'admin-panel', component: AdminPanelComponent },
     { path:'restaurant-details/:id', component: RestaurantDetailsComponent },
     { path:'restaurants', component: RestaurantsComponent},
-    { path:'restaurants/restaurant-menu/:id', component: RestaurantMenuComponent}
+    { path:'restaurants/restaurant-menu/:id', component: RestaurantMenuComponent},
+    {
+        path: 'user', component: UserComponent,
+        children: [
+            { path:'register', component: RegisterComponent },
+            { path:'login', component: LoginComponent },
+        ]
+    }
 ]
 
 @NgModule({

@@ -21,6 +21,11 @@ import { RestaurantService } from './services/restaurant.service';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 import { RestaurantMenuComponent } from './components/restaurant-menu/restaurant-menu.component';
 import { RestaurantMenuItemComponent } from './components/restaurant-menu-item/restaurant-menu-item.component';
+import { UserComponent } from './user/user.component';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
+import { UserService } from './services/user.service';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +41,11 @@ import { RestaurantMenuItemComponent } from './components/restaurant-menu-item/r
     RestaurantsComponent,
     RestaurantComponent,
     RestaurantMenuComponent,
-    RestaurantMenuItemComponent
+    RestaurantMenuItemComponent,
+    UserComponent,
+    LoginComponent,
+    RegisterComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +57,8 @@ import { RestaurantMenuItemComponent } from './components/restaurant-menu-item/r
   providers: [
     AliveService,
     AdminPanelService,
-    RestaurantService
+    RestaurantService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

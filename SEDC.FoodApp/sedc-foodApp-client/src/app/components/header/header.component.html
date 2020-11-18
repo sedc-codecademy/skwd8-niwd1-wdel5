@@ -19,6 +19,10 @@
             <li class="nav-item">
                 <a class="nav-link" routerLink="restaurants">Restaurants</a>
             </li>
+
+            <!-- <li class="nav-item">
+                <a class="nav-link" routerLink="order">Order</a>
+            </li> -->
             
         </ul>
 
@@ -27,6 +31,28 @@
             <li class="nav-item">
                 <a class="nav-link" routerLink="admin-panel">Admin Panel</a>
             </li> 
+
+            <li class="nav-item">
+                <a class="btn btn-outline-success ml-2" routerLink="user/login">Log In</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="btn btn-success ml-2" routerLink="user/register">Register</a>
+            </li>
+
+            <!-- <li class="nav-item dropdown ml-2">
+                <a class="btn btn-outline-success dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Hello, <b>{{authService.checkUsername()}}</b>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    
+                    <a class="dropdown-item" routerLink="user/change-password">Change Password</a>
+                    <a class="dropdown-item" (click)="onLogout()">Logout</a>
+        
+                </div>
+            </li> -->
+
+            <!-- *ngIf="isLoggedIn" -->
 
         </ul>
     </div>

@@ -72,7 +72,7 @@ namespace SEDC.FoodApp.Web.Auth
         }
 
         //http://localhost:45551/api/applicationuser/login
-        [HttpGet("Login")]
+        [HttpPost("Login")]
         public async Task<IActionResult> LoginUser([FromBody] LoginRequestModel model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
