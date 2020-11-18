@@ -26,6 +26,13 @@ import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { UserService } from './services/user.service';
 import { LoaderComponent } from './shared/loader/loader.component';
+import { AuthService } from './auth/auth.service';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import { ChangePasswordComponent } from './user/change-password/change-password.component';
+import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './user/reset-password/reset-password.component';
+import { OrderService } from './services/order.service';
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +52,12 @@ import { LoaderComponent } from './shared/loader/loader.component';
     UserComponent,
     LoginComponent,
     RegisterComponent,
-    LoaderComponent
+    LoaderComponent,
+    ForbiddenComponent,
+    ChangePasswordComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +70,9 @@ import { LoaderComponent } from './shared/loader/loader.component';
     AliveService,
     AdminPanelService,
     RestaurantService,
-    UserService
+    UserService,
+    AuthService,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,20 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
+import { Component, DoCheck, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements DoCheck {
 
   isLoggedIn: boolean = false
   isUserAdmin: boolean = false
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
-  ngOnInit(): void {}
+  ngDoCheck(): void {
+    if(!!localStorage.getItem("token")) {
+      this.authService.isLoggedIn.subscribe({
+        next: data => this.isLoggedIn = data
+      })
 
+      this.authService.isAdmin.subscribe({
+        next: data => this.isUserAdmin = data
+      }) 
 
-  onLogout() {}
+      this.authService.checkIfUserIsLogged()
+      this.authService.checkIfUserIsAdmin()
+    }
+  }
+  
+  onLogout() {
+    this.authService.logout()
+  }
 
 }

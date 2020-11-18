@@ -18,7 +18,11 @@ export class RegisterComponent implements OnInit {
               private userService: UserService,
               private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (localStorage.getItem("token") != null) {
+      this.router.navigateByUrl("/home")
+    }
+  }
 
   formModel = new FormGroup({
     UserName: new FormControl('', Validators.required),

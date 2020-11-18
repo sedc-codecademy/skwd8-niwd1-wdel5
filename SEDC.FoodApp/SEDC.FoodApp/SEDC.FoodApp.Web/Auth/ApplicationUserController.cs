@@ -153,7 +153,7 @@ namespace SEDC.FoodApp.Web.Auth
                 var tokenEncoded = WebEncoders.Base64UrlEncode(tokenBytes);
 
                 var clientAddress = Configuration.GetSection("ApplicationSettings").GetValue<string>("ClientAddress");
-                var passwordResetLink = $"{clientAddress}/user/reset-password?email={user.EmailConfirmed}&token={tokenEncoded}";
+                var passwordResetLink = $"{clientAddress}/user/reset-password?email={user.Email}&token={tokenEncoded}";
 
                 var newEmail = new Email()
                 {
